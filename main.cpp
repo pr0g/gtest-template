@@ -4,6 +4,13 @@
 using namespace testing;
 
 int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
+    InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
+
+// dummy test
+TEST(SampleTest, TestShouldPass)
+{
+    const bool something = true;
+    ASSERT_THAT(something, Eq(true));
 }
