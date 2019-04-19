@@ -20,8 +20,13 @@ git clone https://github.com/google/googletest .
 
 ```bash
 mkdir build && cd build
-cmake ..
+# if macOS/*nix
+cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build . --target install
+# elif windows
+cmake .. -Dgtest_force_shared_crt=ON
+cmake --build . --config Release --target install # note: will likely need to run this as Admin
+# endif
 ```
 
 ### clone gtest-template
@@ -38,7 +43,12 @@ git clone https://github.com/pr0g/gtest-template .
 
 ```bash
 mkdir build && cd build
+# if macOS/*nix
 cmake ..
+# elif windows
+cmake .. -DCMAKE_PREFIX_PATH=<path-to-gtest> # this seems to be required on windows :(
+# e.g. cmake .. -DCMAKE_PREFIX_PATH="C:/Program Files (x86)/googletest-distribution"
+# endif
 cmake --build .
 ```
 
